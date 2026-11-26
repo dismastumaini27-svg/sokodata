@@ -3,76 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data · SokoData Tanzania</title>
-<meta name="title-sw" content="Pakua au omba data · SokoData Tanzania">
-<meta name="title-en" content="Download or request data · SokoData Tanzania">
-<meta name="description" content="Pakua bei za mazao na mifugo Tanzania kama CSV, au omba data zaidi. Download Tanzanian price data as CSV or request more.">
+<title>Omba data · SokoData Tanzania</title>
+<meta name="title-sw" content="Omba data · SokoData Tanzania">
+<meta name="title-en" content="Request data · SokoData Tanzania">
+<meta name="description" content="Data ya bei za mazao na mifugo Tanzania inapatikana kwa ombi. Tanzanian price data is available on request.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-page="data">
 <div id="site-header"></div>
 <section class="page-intro"><div class="wrap">
   <p class="eyebrow">Data</p>
-  <h1><span class="sw">Pakua au omba data</span><span class="en">Download or request data</span></h1>
-  <p><span class="sw">Data yote ni bure kutumia. Kila bei ina chanzo chake (taarifa ya wizara au gazeti). Tafadhali taja SokoData Tanzania na chanzo cha asili unapotumia.</span><span class="en">All data is free to use. Every price carries its source (a ministry report or a newspaper). Please credit SokoData Tanzania and the original source when you use it.</span></p>
+  <h1><span class="sw">Data inapatikana kwa ombi</span><span class="en">Data is available on request</span></h1>
+  <p><span class="sw">Jaza fomu hapa chini ukieleza data unayohitaji na matumizi yake. Tutakutumia faili (Excel au CSV) kwa barua pepe, kila bei ikiwa na chanzo chake.</span><span class="en">Fill in the form below with the data you need and how you will use it. We will email you a file (Excel or CSV), with the source of every price.</span></p>
 </div></section>
 
 <main class="wrap prose-page" style="display:grid;gap:40px">
 
-<section id="pakua" style="display:grid;gap:14px">
-  <h2><span class="sw">Faili kamili</span><span class="en">Complete files</span></h2>
-  <div class="dl-grid">
-    <div class="dl-card"><h3><span class="sw">Bei za mazao</span><span class="en">Crop prices</span></h3>
-      <p id="nCrops"></p>
-      <div class="btns"><button class="btn small" type="button" data-full="crops">CSV</button><button class="btn ghost small" type="button" data-full="crops" data-fmt="json">JSON</button></div></div>
-    <div class="dl-card"><h3><span class="sw">Bei za mifugo</span><span class="en">Livestock prices</span></h3>
-      <p id="nLive"></p>
-      <div class="btns"><button class="btn small" type="button" data-full="livestock">CSV</button><button class="btn ghost small" type="button" data-full="livestock" data-fmt="json">JSON</button></div></div>
-    <div class="dl-card"><h3><span class="sw">Bei kwenye magazeti</span><span class="en">Prices in newspapers</span></h3>
-      <p id="nNews"></p>
-      <div class="btns"><button class="btn small" type="button" data-full="news">CSV</button><button class="btn ghost small" type="button" data-full="news" data-fmt="json">JSON</button></div></div>
-  </div>
-</section>
-
-<section id="chagua" class="card" style="display:grid;gap:16px">
-  <div><h2><span class="sw">Chagua data unayotaka</span><span class="en">Choose the data you need</span></h2>
-  <p class="missing"><span class="sw">Bei za jumla za mazao (TZS kwa kilo). Faili linatengenezwa kwenye kivinjari chako.</span><span class="en">Wholesale crop prices (TZS per kg). The file is made in your browser.</span></p></div>
-  <div class="builder">
-    <div class="fieldset"><span><span class="sw">Mazao</span><span class="en">Crops</span></span><div class="checks" id="fCrops"></div></div>
-    <div class="fieldset"><span><span class="sw">Mkoa</span><span class="en">Region</span></span>
-      <select id="fRegion" class="field"></select></div>
-    <div class="fieldset"><span><span class="sw">Kuanzia wiki</span><span class="en">From week</span></span>
-      <select id="fFrom" class="field"></select></div>
-    <div class="fieldset"><span><span class="sw">Hadi wiki</span><span class="en">To week</span></span>
-      <select id="fTo" class="field"></select></div>
-  </div>
-  <div class="summary" id="fSummary" role="status"></div>
-  <div class="tablewrap" id="fPreview"></div>
-  <div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button" id="fCsv"><span class="sw">Pakua CSV</span><span class="en">Download CSV</span></button><button class="btn ghost" type="button" id="fJson"><span class="sw">Pakua JSON</span><span class="en">Download JSON</span></button></div>
-</section>
-
-<section style="display:grid;gap:12px">
-  <h2><span class="sw">Maelezo ya safu</span><span class="en">Column guide</span></h2>
-  <div class="tablewrap"><table class="dict">
-    <thead><tr><th><span class="sw">Safu</span><span class="en">Column</span></th><th><span class="sw">Maana</span><span class="en">Meaning</span></th></tr></thead>
-    <tbody>
-      <tr><td>week_start, week_end</td><td><span class="sw">Wiki ambayo bei zilikusanywa (YYYY-MM-DD)</span><span class="en">The week the prices were collected (YYYY-MM-DD)</span></td></tr>
-      <tr><td>region</td><td><span class="sw">Mkoa</span><span class="en">Region</span></td></tr>
-      <tr><td>crop, crop_en</td><td><span class="sw">Zao kwa Kiswahili na Kiingereza</span><span class="en">Crop in Swahili and English</span></td></tr>
-      <tr><td>price_tzs_per_kg</td><td><span class="sw">Bei ya jumla ya wiki hii, TZS kwa kilo</span><span class="en">This week's wholesale price, TZS per kg</span></td></tr>
-      <tr><td>previous_week_tzs_per_kg</td><td><span class="sw">Bei ya wiki iliyopita kama ilivyoandikwa kwenye taarifa</span><span class="en">Last week's price as printed in the report</span></td></tr>
-      <tr><td>change_pct</td><td><span class="sw">Badiliko la asilimia kutoka wiki iliyopita</span><span class="en">Percentage change from last week</span></td></tr>
-      <tr><td>needs_review</td><td><span class="sw">TRUE kama badiliko ni zaidi ya 30%; angalia taarifa ya asili</span><span class="en">TRUE if the change is over 30%; check the original report</span></td></tr>
-      <tr><td>source_url</td><td><span class="sw">Kiungo cha taarifa ya wizara (PDF)</span><span class="en">Link to the ministry report (PDF)</span></td></tr>
-    </tbody></table></div>
-  <h3 style="margin-top:8px"><span class="sw">Jinsi ya kutaja</span><span class="en">How to cite</span></h3>
-  <p class="cite" id="cite"></p>
-</section>
-
 <section id="ombi" class="two-col">
   <div class="prose">
     <h2><span class="sw">Omba data</span><span class="en">Request data</span></h2>
-    <p><span class="sw">Unahitaji data ambayo haipo hapa, kipindi kirefu zaidi, masoko maalum, au data kwa ajili ya utafiti au mradi? Tuambie unachohitaji, nasi tutakujibu kwa barua pepe.</span><span class="en">Need data that is not here: a longer period, specific markets, or data for research or a project? Tell us what you need and we will reply by email.</span></p>
+    <p><span class="sw">Unahitaji bei za mkoa, zao au kipindi fulani kwa ajili ya utafiti, biashara au mradi? Tuambie unachohitaji, nasi tutakutumia data kwa barua pepe.</span><span class="en">Need prices for a region, crop or period for research, business or a project? Tell us what you need and we will email you the data.</span></p>
     <ul>
       <li><span class="sw">Watafiti na wanafunzi: data ya historia kwa ajili ya tasnifu na makala</span><span class="en">Researchers and students: historical data for theses and papers</span></li>
       <li><span class="sw">Mashirika na benki: bei za masoko maalum kwa kipindi maalum</span><span class="en">Organisations and banks: prices for chosen markets and periods</span></li>
@@ -106,6 +56,34 @@
     <p class="note"><span class="sw">Tunatumia barua pepe yako kukujibu tu; hatuitoi kwa mtu mwingine.</span><span class="en">We use your email only to reply to you; we do not share it.</span></p>
   </form>
 </section>
+
+<section id="pakua" style="display:grid;gap:14px">
+  <h2><span class="sw">Data tuliyonayo</span><span class="en">Data we hold</span></h2>
+  <div class="dl-grid">
+    <div class="dl-card"><h3><span class="sw">Bei za mazao</span><span class="en">Crop prices</span></h3><p id="nCrops"></p></div>
+    <div class="dl-card"><h3><span class="sw">Bei za mifugo</span><span class="en">Livestock prices</span></h3><p id="nLive"></p></div>
+    <div class="dl-card"><h3><span class="sw">Bei kwenye magazeti</span><span class="en">Prices in newspapers</span></h3><p id="nNews"></p></div>
+  </div>
+</section>
+
+<section style="display:grid;gap:12px">
+  <h2><span class="sw">Safu za faili utakalopokea</span><span class="en">Columns in the file you receive</span></h2>
+  <div class="tablewrap"><table class="dict">
+    <thead><tr><th><span class="sw">Safu</span><span class="en">Column</span></th><th><span class="sw">Maana</span><span class="en">Meaning</span></th></tr></thead>
+    <tbody>
+      <tr><td>week_start, week_end</td><td><span class="sw">Wiki ambayo bei zilikusanywa (YYYY-MM-DD)</span><span class="en">The week the prices were collected (YYYY-MM-DD)</span></td></tr>
+      <tr><td>region</td><td><span class="sw">Mkoa</span><span class="en">Region</span></td></tr>
+      <tr><td>crop, crop_en</td><td><span class="sw">Zao kwa Kiswahili na Kiingereza</span><span class="en">Crop in Swahili and English</span></td></tr>
+      <tr><td>price_tzs_per_kg</td><td><span class="sw">Bei ya jumla ya wiki hii, TZS kwa kilo</span><span class="en">This week's wholesale price, TZS per kg</span></td></tr>
+      <tr><td>previous_week_tzs_per_kg</td><td><span class="sw">Bei ya wiki iliyopita kama ilivyoandikwa kwenye taarifa</span><span class="en">Last week's price as printed in the report</span></td></tr>
+      <tr><td>change_pct</td><td><span class="sw">Badiliko la asilimia kutoka wiki iliyopita</span><span class="en">Percentage change from last week</span></td></tr>
+      <tr><td>needs_review</td><td><span class="sw">TRUE kama badiliko ni zaidi ya 30%; angalia taarifa ya asili</span><span class="en">TRUE if the change is over 30%; check the original report</span></td></tr>
+      <tr><td>source_url</td><td><span class="sw">Kiungo cha taarifa ya wizara (PDF)</span><span class="en">Link to the ministry report (PDF)</span></td></tr>
+    </tbody></table></div>
+  <h3 style="margin-top:8px"><span class="sw">Jinsi ya kutaja</span><span class="en">How to cite</span></h3>
+  <p class="cite" id="cite"></p>
+</section>
+
 </main>
 
 <div id="site-footer"></div>

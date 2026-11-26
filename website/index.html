@@ -19,7 +19,7 @@
     <p class="lead"><span class="sw">SokoData inakusanya bei rasmi za mazao na mifugo kutoka taarifa za wizara, inazipanga kwa mkoa na wiki, na kuziweka wazi kwa wakulima, wafanyabiashara, watafiti na watunga sera.</span><span class="en">SokoData gathers official crop and livestock prices from ministry reports, organises them by region and week, and makes them open to farmers, traders, researchers and policy makers.</span></p>
     <div class="cta">
       <a class="btn" href="prices.html"><span class="sw">Angalia bei za wiki</span><span class="en">See this week's prices</span></a>
-      <a class="btn ghost" href="data.html"><span class="sw">Pakua data</span><span class="en">Download data</span></a>
+      <a class="btn ghost" href="data.html"><span class="sw">Omba data</span><span class="en">Request data</span></a>
     </div>
     <div class="stats" id="stats"></div>
   </div>
@@ -29,13 +29,23 @@
   </figure>
 </div></section>
 
-<section class="band soft"><div class="wrap">
+<section class="band soft" id="hmSection"><div class="wrap">
   <div class="band-head">
-    <div><h2><span class="sw">Bei za wiki ya karibuni</span><span class="en">Latest weekly prices</span></h2>
+    <div><h2><span class="sw">Ramani ya bei za wiki hii</span><span class="en">This week's price map</span></h2>
     <p id="latestSub"></p></div>
-    <a class="btn ghost small" href="prices.html"><span class="sw">Ramani na mikoa yote</span><span class="en">Map and all regions</span></a>
+    <a class="btn ghost small" href="prices.html"><span class="sw">Bei zote na historia</span><span class="en">All prices and history</span></a>
   </div>
-  <div class="price-strip" id="strip"></div>
+  <div class="hm-grid">
+    <div>
+      <div class="map-wrap" id="hmWrap"><div id="hmSvg"></div><div class="map-tip" id="hmTip" hidden></div></div>
+      <div class="map-legend" id="hmLegend"></div>
+      <p class="credit"><span class="sw">Elekeza au gusa mkoa kuona bei zake zote. Mipaka: NBS Tanzania kupitia geoBoundaries (CC BY 4.0)</span><span class="en">Point at or tap a region to see all its prices. Boundaries: Tanzania NBS via geoBoundaries (CC BY 4.0)</span></p>
+    </div>
+    <div>
+      <p class="hm-hint"><span class="sw">Chagua zao, wastani wa mikoa:</span><span class="en">Choose a crop, regional average:</span></p>
+      <div class="hm-crops" id="hmCrops"></div>
+    </div>
+  </div>
 </div></section>
 
 <section class="band"><div class="wrap">
@@ -49,14 +59,14 @@
     </article>
     <article class="feature">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Local_market_in_tanzania_bunju.jpg?width=800" alt="" loading="lazy">
-      <div><h3><span class="sw">Data ya kupakua</span><span class="en">Data to download</span></h3>
-      <p><span class="sw">Chagua zao, mkoa na kipindi, kisha pakua faili la CSV lenye chanzo cha kila bei. Unahitaji zaidi? Tuma ombi la data.</span><span class="en">Choose a crop, region and period, then download a CSV file with the source of every price. Need more? Send a data request.</span></p>
-      <a class="more" href="data.html"><span class="sw">Nenda kwenye data →</span><span class="en">Go to data →</span></a></div>
+      <div><h3><span class="sw">Data kwa ombi</span><span class="en">Data on request</span></h3>
+      <p><span class="sw">Unahitaji bei za mkoa, zao au kipindi fulani kwa ajili ya utafiti au biashara? Tuma ombi, tutakutumia data pamoja na chanzo cha kila bei.</span><span class="en">Need prices for a region, crop or period for research or business? Send a request and we will send you the data with the source of every price.</span></p>
+      <a class="more" href="data.html"><span class="sw">Omba data →</span><span class="en">Request data →</span></a></div>
     </article>
     <article class="feature">
       <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg?width=800" alt="" loading="lazy">
       <div><h3><span class="sw">Mradi wa wazi</span><span class="en">An open project</span></h3>
-      <p><span class="sw">Imeanzishwa na mhadhiri wa SUA. Msimbo na data viko wazi kwenye GitHub ili wengine wajenge juu yake.</span><span class="en">Started by a lecturer at SUA. The code and data are open on GitHub so others can build on them.</span></p>
+      <p><span class="sw">Jukwaa la Kitanzania lenye msimbo wazi kwenye GitHub, ili wengine waweze kujenga juu yake.</span><span class="en">A Tanzanian platform whose code is open on GitHub, so others can build on it.</span></p>
       <a class="more" href="project.html"><span class="sw">Soma kuhusu mradi →</span><span class="en">Read about the project →</span></a></div>
     </article>
   </div>
@@ -76,32 +86,6 @@
 <div id="site-footer"></div>
 <script src="assets/config.js"></script>
 <script src="assets/site.js"></script>
-<script>
-/* Home page numbers, read from the same data files as the prices page. */
-(function () {
-  const CROPS = [["mahindi", "Mahindi", "Maize"], ["mchele", "Mchele", "Rice"], ["maharage", "Maharage", "Beans"], ["mtama", "Mtama", "Sorghum"], ["uwele", "Uwele", "Bulrush millet"], ["ulezi", "Ulezi", "Finger millet"], ["viazi mviringo", "Viazi mviringo", "Potatoes"]];
-  const MON = { sw: ["Jan", "Feb", "Mac", "Apr", "Mei", "Jun", "Jul", "Ago", "Sep", "Okt", "Nov", "Des"], en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] };
-  const L = (sw, en) => `<span class="sw">${sw}</span><span class="en">${en}</span>`;
-  const fmt = n => Math.round(n).toLocaleString("en-US");
-  const day = (d, l) => `${Number(d.slice(8))} ${MON[l][Number(d.slice(5, 7)) - 1]} ${d.slice(0, 4)}`;
-  const chg = (a, b) => { if (!b) return ""; const p = (a - b) / b * 100, c = p > 0.05 ? "up" : p < -0.05 ? "down" : "flat"; return `<span class="chg ${c}">${p > 0.05 ? "▲" : p < -0.05 ? "▼" : "►"} ${Math.abs(p).toFixed(1)}%</span>`; };
-  Promise.all(["crops", "meta"].map(n => fetch(`data/${n}.json`, { cache: "no-cache" }).then(r => r.json()))).then(([crops, meta]) => {
-    const weeks = meta.crop_weeks || [], last = weeks[weeks.length - 1];
-    const rows = crops.filter(r => r.week_start === last), end = (rows[0] || {}).week_end || last;
-    const regions = new Set(crops.map(r => r.region)).size;
-    document.getElementById("stats").innerHTML =
-      `<div><b>${weeks.length}</b><span>${L("wiki za bei", "weeks of prices")}</span></div>` +
-      `<div><b>${regions}</b><span>${L("mikoa", "regions")}</span></div>` +
-      `<div><b>${fmt(crops.length)}</b><span>${L("bei zilizohifadhiwa", "prices on record")}</span></div>` +
-      `<div><b>7</b><span>${L("mazao makuu", "main crops")}</span></div>`;
-    document.getElementById("latestSub").innerHTML = L(`Wastani wa mikoa, TZS kwa kilo, bei ya jumla · ${day(last, "sw")} – ${day(end, "sw")} · Wizara ya Kilimo`, `Regional average, TZS per kg, wholesale · ${day(last, "en")} – ${day(end, "en")} · Ministry of Agriculture`);
-    const mean = a => a.length ? Math.round(a.reduce((s, x) => s + x, 0) / a.length / 10) * 10 : null; /* same rounding as the prices page */
-    document.getElementById("strip").innerHTML = CROPS.map(([k, sw, en]) => {
-      const rs = rows.filter(r => r.crop === k), cur = mean(rs.filter(r => r.price != null).map(r => r.price)), prev = mean(rs.filter(r => r.previous != null).map(r => r.previous));
-      return `<a href="prices.html#mazao"><span class="n">${L(sw, en)}</span><span class="p">${cur == null ? "–" : fmt(cur)} <small>TZS/kg</small></span>${cur == null ? "" : chg(cur, prev)}</a>`;
-    }).join("");
-  }).catch(() => { document.getElementById("strip").innerHTML = `<p class="empty">–</p>`; });
-})();
-</script>
+<script src="assets/homemap.js"></script>
 </body>
 </html>
