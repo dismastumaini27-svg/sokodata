@@ -44,7 +44,7 @@
         <p style="margin-top:8px">${L("Bei za mazao na mifugo Tanzania, zilizo wazi na zenye vyanzo.", "Tanzanian crop and livestock prices, open and sourced.")}</p></div>
       <div><h4>${L("Tovuti", "Site")}</h4><ul>${NAV.map(([k, href, sw, en]) => `<li><a href="${href}">${L(sw, en)}</a></li>`).join("")}</ul></div>
       <div><h4>Data</h4><ul>
-        <li><a href="data.html#pakua">${L("Pakua data", "Download data")}</a></li>
+        <li><a href="data.html#pakua">${L("Data tuliyonayo", "Data we hold")}</a></li>
         <li><a href="data.html#ombi">${L("Omba data", "Request data")}</a></li>
         <li><a href="prices.html#vyanzo">${L("Vyanzo", "Sources")}</a></li></ul></div>
       <div><h4>${L("Mradi", "Project")}</h4><ul>
