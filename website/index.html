@@ -51,6 +51,15 @@
     </div>
     <div class="tiles" id="tiles"></div>
     <div class="alert" id="review" role="note"></div>
+    <div class="card" id="mapSection">
+      <div class="card-head"><h3 id="mapTitle"></h3><p data-i18n="mapSub">Gusa au elekeza kipanya kwenye mkoa kuona bei zake zote</p></div>
+      <div class="map-grid">
+        <div class="map-wrap" id="mapWrap"><div id="mapSvg"></div><div class="map-tip" id="mapTip" hidden></div></div>
+        <aside class="map-panel" id="mapPanel" aria-live="polite"></aside>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+      <p class="credit" id="mapCredit"></p>
+    </div>
     <div class="card">
       <div class="card-head"><h3 id="chartTitle"></h3><p id="chartSub"></p></div>
       <div class="chart" id="cropChart"></div>
@@ -131,5 +140,6 @@ const _renderAll = renderAll;
 renderAll = function () { _renderAll(); heroStats(); };
 applyText();
 </script>
+<script src="assets/map.js"></script>
 </body>
 </html>

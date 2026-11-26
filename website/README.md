@@ -2,7 +2,7 @@
 
 Open, sourced prices of Tanzanian food crops and livestock, in Kiswahili and English.
 
-Live site: https://YOUR-GITHUB-NAME.github.io/sokodata/ (after you publish it, see below)
+Live site: https://dismastumaini27-svg.github.io/sokodata/
 
 ## What is in this folder
 
@@ -10,6 +10,8 @@ Live site: https://YOUR-GITHUB-NAME.github.io/sokodata/ (after you publish it, s
 | --- | --- |
 | `index.html` | The page structure (sections and tabs) |
 | `assets/style.css` | Colours, fonts and layout (light and dark mode) |
+| `assets/map.js` | The price map: colours each region by price, hover card, region panel |
+| `data/tz_regions.json` | Simplified region shapes (Tanzania NBS via geoBoundaries, CC BY 4.0) |
 | `assets/app.js` | Loads the data and draws the charts and tables; all text in both languages is in the `T` block at the top |
 | `data/*.json` | The data the site shows, built from the master CSV files |
 | `scripts/build_data.py` | Turns `../data/*.csv` (filled by the daily Claude agent) into `data/*.json` |
@@ -34,7 +36,7 @@ In a terminal in this folder run `python -m http.server 8000`, then open http://
 2. Click **New repository**, name it `sokodata`, choose **Public**, and create it.
 3. Click **uploading an existing file**, then drag in everything inside this `website` folder (including the `assets`, `data` and `scripts` folders and the `.nojekyll` file), and click **Commit changes**.
 4. Go to **Settings > Pages**. Under **Build and deployment**, choose **Deploy from a branch**, branch **main**, folder **/ (root)**, and save.
-5. After a minute the site is live at `https://YOUR-GITHUB-NAME.github.io/sokodata/`.
+5. After a minute the site is live at `https://dismastumaini27-svg.github.io/sokodata/`.
 
 Later, GitHub Desktop (https://desktop.github.com) makes updating easier: it syncs this folder with one click.
 
