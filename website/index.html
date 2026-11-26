@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SokoData Tanzania</title>
 <meta name="description" content="Bei za mazao na mifugo Tanzania: wazi, za kuaminika, kila wiki. Tanzanian crop and livestock prices, open and sourced.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -24,6 +21,16 @@
     </div>
   </div>
 </header>
+<section class="hero" aria-label="SokoData">
+  <div class="wrap hero-in">
+    <p class="kicker" data-i18n="heroKicker">Bei za jumla za mazao, kila wiki, mikoa yote</p>
+    <h2 class="hero-title" data-i18n="heroTitle">Jua bei ya soko kabla hujauza au kununua</h2>
+    <p class="hero-sub" data-i18n="heroSub">Bei rasmi za Wizara ya Kilimo kwa mikoa zaidi ya 20, zimepangwa ili uzilinganishe kwa urahisi.</p>
+    <div class="hero-stats" id="heroStats"></div>
+    <div class="hero-cta"><a class="btn" href="#mazao" data-i18n="ctaPrices">Angalia bei za wiki</a><a class="btn ghost" href="#historia" data-i18n="ctaHistory">Mwenendo wa bei</a></div>
+  </div>
+  <p class="credit hero-credit">Picha: Soko la Tengeru, Arusha · Fanny Schertzer, <a href="https://commons.wikimedia.org/wiki/File:Tengeru_market.jpg" rel="noopener">CC BY-SA 2.5</a></p>
+</section>
 <nav class="tabs" aria-label="Sections">
   <div class="wrap">
     <a href="#mazao" data-view="mazao" data-i18n="tabCrops">Mazao</a>
@@ -79,6 +86,7 @@
       <label><span data-i18n="week">Wiki</span> <select id="liveWeekSel"></select></label>
       <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitLive">TZS kwa mnyama mmoja (bei ya chini na ya juu)</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Mifugo na Uvuvi</b></span></span>
     </div>
+    <figure class="banner"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Maasai_man_with_cattle.jpg?width=1600" alt="" loading="lazy"><figcaption class="credit">Picha: Muhammad Mahdi Karim, <a href="https://commons.wikimedia.org/wiki/File:Maasai_man_with_cattle.jpg" rel="noopener">GFDL 1.2</a></figcaption></figure>
     <h2 data-i18n="liveTitle">Bei za mifugo kwenye minada ya upili na mipakani</h2>
     <div class="chips" id="animalChips" role="group" aria-label="Animal"></div>
     <div class="card">
@@ -89,10 +97,13 @@
   </section>
 
   <section class="view" id="view-vyanzo">
+    <div class="about-grid">
+    <figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg?width=1000" alt="" loading="lazy"><figcaption class="credit">Kikundi cha wakulima Wanawake Kwanza, Maza, Morogoro · USAID, <a href="https://commons.wikimedia.org/wiki/File:Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg" rel="noopener">public domain</a></figcaption></figure>
     <div class="card prose">
       <h2 data-i18n="aboutTitle">Kuhusu data hii</h2>
       <div data-i18n-html="aboutBody"></div>
       <div id="coverage"></div>
+    </div>
     </div>
     <div class="card">
       <div class="card-head"><h3 data-i18n="newsTitle">Bei zilizoripotiwa kwenye magazeti</h3><p data-i18n="newsSub">Chanzo cha pili: kila takwimu ina kiungo chake</p></div>
@@ -102,5 +113,23 @@
 </main>
 <footer><div class="wrap" data-i18n="foot"></div></footer>
 <script src="assets/app.js"></script>
+<script>
+/* Hero text and live numbers. Kept here so app.js stays unchanged. */
+Object.assign(T.sw, { heroKicker: "Bei za jumla za mazao, kila wiki, mikoa yote", heroTitle: "Jua bei ya soko kabla hujauza au kununua", heroSub: "Bei rasmi za Wizara ya Kilimo kwa mikoa zaidi ya 20, zimepangwa ili uzilinganishe kwa urahisi.", ctaPrices: "Angalia bei za wiki", ctaHistory: "Mwenendo wa bei", sWeeks: "wiki za bei", sRegions: "mikoa", sRows: "bei zilizohifadhiwa", sLatest: "taarifa ya karibuni", sCheap: "Mahindi rahisi zaidi", sDear: "Mahindi ghali zaidi" });
+Object.assign(T.en, { heroKicker: "Wholesale crop prices, every week, every region", heroTitle: "Know the market price before you sell or buy", heroSub: "Official Ministry of Agriculture prices for more than 20 regions, organised so you can compare them easily.", ctaPrices: "See this week's prices", ctaHistory: "Price trends", sWeeks: "weeks of prices", sRegions: "regions", sRows: "prices on record", sLatest: "latest report", sCheap: "Cheapest maize", sDear: "Most expensive maize" });
+function heroStats() {
+  const t = T[S.lang], m = D.meta || {}, weeks = m.crop_weeks || [];
+  if (!weeks.length) return;
+  const last = weeks[weeks.length - 1], rows = D.crops.filter(r => r.week_start === last && r.crop === "mahindi" && r.price != null).sort((a, b) => a.price - b.price);
+  const regions = new Set(D.crops.map(r => r.region)).size, end = (D.crops.find(r => r.week_start === last) || {}).week_end || last;
+  const box = (n, l) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`;
+  let s = box(weeks.length, t.sWeeks) + box(regions, t.sRegions) + box(fmt(D.crops.length), t.sRows) + box(weekLabel(last, end), t.sLatest);
+  if (rows.length) s += box(`${esc(rows[0].region)} · ${fmt(rows[0].price)}`, t.sCheap + " (TZS/kg)") + box(`${esc(rows[rows.length - 1].region)} · ${fmt(rows[rows.length - 1].price)}`, t.sDear + " (TZS/kg)");
+  $("heroStats").innerHTML = s;
+}
+const _renderAll = renderAll;
+renderAll = function () { _renderAll(); heroStats(); };
+applyText();
+</script>
 </body>
 </html>
