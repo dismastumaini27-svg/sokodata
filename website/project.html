@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mradi · SokoData Tanzania</title>
+<meta name="title-sw" content="Mradi · SokoData Tanzania">
+<meta name="title-en" content="The project · SokoData Tanzania">
+<meta name="description" content="Jinsi SokoData inavyofanya kazi na mpango wa miaka ijayo. How SokoData works and the roadmap.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="project">
+<div id="site-header"></div>
+<section class="page-intro"><div class="wrap">
+  <p class="eyebrow"><span class="sw">Mradi</span><span class="en">The project</span></p>
+  <h1><span class="sw">Kutoka PDF za wizara hadi data ya wazi inayotumika</span><span class="en">From ministry PDFs to open, usable data</span></h1>
+  <p><span class="sw">Jinsi SokoData inavyofanya kazi leo, tunakoelekea, na jinsi unavyoweza kushiriki.</span><span class="en">How SokoData works today, where it is going, and how you can take part.</span></p>
+</div></section>
+
+<main class="wrap prose-page" style="display:grid;gap:44px">
+  <section class="two-col">
+    <div class="prose">
+      <h2 style="margin-top:0"><span class="sw">Changamoto</span><span class="en">The problem</span></h2>
+      <p><span class="sw">Mkulima anayeuza mahindi Rukwa mara nyingi hajui bei ya Dar es Salaam au Arusha wiki hii. Mfanyabiashara anajua. Pengo hilo la taarifa linamfanya mkulima kuuza kwa bei ya chini.</span><span class="en">A farmer selling maize in Rukwa often does not know this week's price in Dar es Salaam or Arusha. The trader does. That information gap makes farmers sell for less.</span></p>
+      <p><span class="sw">Takwimu zipo: wizara huzikusanya kila wiki. Lakini zimetawanyika kwenye mamia ya PDF, hazina historia inayounganika, na haziwezi kupakuliwa kama data.</span><span class="en">The figures exist: the ministries collect them every week. But they are scattered across hundreds of PDFs, with no joined-up history, and cannot be downloaded as data.</span></p>
+    </div>
+    <figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Roadside_market_in_Tanzania.jpg?width=900" alt="" loading="lazy">
+      <figcaption class="credit"><span class="sw">Soko la kando ya barabara</span><span class="en">Roadside market</span> · Nawfalunni, <a href="https://commons.wikimedia.org/wiki/File:Roadside_market_in_Tanzania.jpg" rel="noopener">CC BY-SA 4.0</a></figcaption></figure>
+  </section>
+
+  <section style="display:grid;gap:16px">
+    <h2><span class="sw">Jinsi inavyofanya kazi</span><span class="en">How it works</span></h2>
+    <ol class="steps">
+      <li><b><span class="sw">Kukusanya.</span><span class="en">Collect.</span></b> <span class="sw">Kila asubuhi programu inaangalia tovuti za Wizara ya Kilimo na Wizara ya Mifugo na Uvuvi kwa taarifa mpya, pamoja na magazeti kama The Citizen, Daily News na The Guardian.</span><span class="en">Every morning a program checks the Ministry of Agriculture and Ministry of Livestock and Fisheries websites for new reports, and newspapers such as The Citizen, Daily News and The Guardian.</span></li>
+      <li><b><span class="sw">Kusoma.</span><span class="en">Read.</span></b> <span class="sw">Bei za kila mkoa na zao zinasomwa kutoka kwenye PDF na kuhifadhiwa pamoja na kiungo cha taarifa ya asili.</span><span class="en">Each region's and crop's price is read from the PDF and stored with a link to the original report.</span></li>
+      <li><b><span class="sw">Kukagua.</span><span class="en">Check.</span></b> <span class="sw">Bei iliyobadilika zaidi ya 30% kwa wiki moja inawekwa alama ya ukaguzi; ripoti ya kila siku inaandikwa.</span><span class="en">Any price that moved more than 30% in a week is flagged for checking, and a daily report is written.</span></li>
+      <li><b><span class="sw">Kuchapisha.</span><span class="en">Publish.</span></b> <span class="sw">Tovuti hii inasasishwa: ramani, chati, majedwali na faili za kupakua.</span><span class="en">This website is updated: map, charts, tables and download files.</span></li>
+    </ol>
+  </section>
+
+  <section id="ramani" style="display:grid;gap:16px">
+    <h2><span class="sw">Mpango wa kazi</span><span class="en">Roadmap</span></h2>
+    <div class="road">
+      <div class="now"><span class="when"><span class="sw">Sasa · 2026</span><span class="en">Now · 2026</span></span>
+        <h3><span class="sw">Jukwaa la data</span><span class="en">Data platform</span><span class="tag"><span class="sw">Inaendelea</span><span class="en">In progress</span></span></h3>
+        <p><span class="sw">Bei za mazao 7 kwa mikoa 26, historia tangu 2024, bei za mifugo, ramani, upakuaji wa CSV na ukusanyaji wa kila siku.</span><span class="en">Prices of 7 crops in 26 regions, history since 2024, livestock prices, a map, CSV downloads and daily collection.</span></p></div>
+      <div><span class="when">2027</span>
+        <h3><span class="sw">Historia ndefu na mazao zaidi</span><span class="en">Longer history and more crops</span></h3>
+        <p><span class="sw">Kurudisha taarifa za miaka ya nyuma, kuongeza bei za rejareja, mboga, matunda na machinjio, na jarida la kila wiki.</span><span class="en">Recover older years of reports, add retail, vegetable, fruit and abattoir prices, and a weekly newsletter.</span></p></div>
+      <div><span class="when">2027–2028</span>
+        <h3><span class="sw">SMS na WhatsApp</span><span class="en">SMS and WhatsApp</span></h3>
+        <p><span class="sw">Mkulima anatuma jina la zao na mkoa, anapokea bei ya wiki hii kwenye simu yoyote.</span><span class="en">A farmer sends a crop and region name and gets this week's price on any phone.</span></p></div>
+      <div><span class="when">2028–2030</span>
+        <h3><span class="sw">Wakusanyaji wa masoko na API</span><span class="en">Market collectors and an API</span></h3>
+        <p><span class="sw">Wanafunzi wa SUA na vyuo vingine wanakusanya bei za masoko ya wilaya; API kwa benki, mashirika na watafiti.</span><span class="en">Students at SUA and other universities collect prices in district markets; an API for banks, organisations and researchers.</span></p></div>
+      <div><span class="when">2030+</span>
+        <h3><span class="sw">Kuunganisha wanunuzi na wauzaji</span><span class="en">Connecting buyers and sellers</span></h3>
+        <p><span class="sw">Kwa kutumia data ya bei iliyoaminika, kuunganisha wakulima, vikundi na wanunuzi pamoja na usafirishaji.</span><span class="en">Building on trusted price data, linking farmers, groups and buyers, together with transport.</span></p></div>
+    </div>
+  </section>
+
+  <section id="washirika" class="two-col">
+    <div class="prose">
+      <h2 style="margin-top:0"><span class="sw">Shiriki nasi</span><span class="en">Take part</span></h2>
+      <ul>
+        <li><b><span class="sw">Taasisi na wafadhili:</span><span class="en">Institutions and funders:</span></b> <span class="sw">tunatafuta washirika wa kufadhili ukusanyaji wa masoko na huduma ya SMS.</span><span class="en">we are looking for partners to fund market collection and the SMS service.</span></li>
+        <li><b><span class="sw">Watafiti na wanafunzi:</span><span class="en">Researchers and students:</span></b> <span class="sw">tumia data kwenye kazi zako na tuambie unachohitaji zaidi.</span><span class="en">use the data in your work and tell us what more you need.</span></li>
+        <li><b><span class="sw">Wasanidi programu:</span><span class="en">Developers:</span></b> <span class="sw">msimbo uko wazi chini ya leseni ya MIT; karibu kuboresha.</span><span class="en">the code is open under the MIT licence; improvements are welcome.</span></li>
+        <li><b><span class="sw">Wizara na taasisi za takwimu:</span><span class="en">Ministries and statistics bodies:</span></b> <span class="sw">tungependa kupata taarifa moja kwa moja kama Excel au CSV.</span><span class="en">we would like to receive reports directly as Excel or CSV.</span></li>
+      </ul>
+      <p><a class="btn" href="about.html#mawasiliano"><span class="sw">Wasiliana nasi</span><span class="en">Contact us</span></a> <a class="btn ghost" href="https://github.com/dismastumaini27-svg/sokodata" rel="noopener">GitHub</a></p>
+    </div>
+    <div class="card prose">
+      <h3><span class="sw">Hali ya sasa ya vyanzo</span><span class="en">Current state of sources</span></h3>
+      <p><span class="sw">Wizara ya Kilimo: taarifa ya kila wiki ya bei za jumla (PDF). Wizara ya Mifugo na Uvuvi: bei za minada, ambazo hazijachapishwa tangu Novemba 2025. Magazeti: bei zinazotajwa kwenye habari, kila moja na kiungo.</span><span class="en">Ministry of Agriculture: weekly wholesale price report (PDF). Ministry of Livestock and Fisheries: auction prices, not published since November 2025. Newspapers: prices quoted in news stories, each with its link.</span></p>
+      <p><a href="prices.html#vyanzo"><span class="sw">Angalia vyanzo vyote →</span><span class="en">See all sources →</span></a></p>
+    </div>
+  </section>
+</main>
+
+<div id="site-footer"></div>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+</body>
+</html>

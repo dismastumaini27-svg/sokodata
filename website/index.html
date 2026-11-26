@@ -3,143 +3,105 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SokoData Tanzania</title>
-<meta name="description" content="Bei za mazao na mifugo Tanzania: wazi, za kuaminika, kila wiki. Tanzanian crop and livestock prices, open and sourced.">
+<title>SokoData Tanzania · Bei za mazao na mifugo</title>
+<meta name="title-sw" content="SokoData Tanzania · Bei za mazao na mifugo">
+<meta name="title-en" content="SokoData Tanzania · Crop and livestock prices">
+<meta name="description" content="Bei za mazao na mifugo Tanzania: wazi, zenye vyanzo, kila wiki. Tanzanian crop and livestock prices, open and sourced.">
 <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
-<header class="top">
-  <div class="wrap">
-    <div class="brand">
-      <h1>Soko<span>Data</span> Tanzania</h1>
-      <p data-i18n="tagline">Bei za mazao na mifugo, zilizo wazi na za kuaminika</p>
-      <span class="proto" data-i18n="proto">Toleo la majaribio</span>
-    </div>
-    <div class="lang" role="group" aria-label="Language">
-      <button id="lang-sw" type="button" aria-pressed="true">Kiswahili</button>
-      <button id="lang-en" type="button" aria-pressed="false">English</button>
-    </div>
-  </div>
-</header>
-<section class="hero" aria-label="SokoData">
-  <div class="wrap hero-in">
-    <p class="kicker" data-i18n="heroKicker">Bei za jumla za mazao, kila wiki, mikoa yote</p>
-    <h2 class="hero-title" data-i18n="heroTitle">Jua bei ya soko kabla hujauza au kununua</h2>
-    <p class="hero-sub" data-i18n="heroSub">Bei rasmi za Wizara ya Kilimo kwa mikoa zaidi ya 20, zimepangwa ili uzilinganishe kwa urahisi.</p>
-    <div class="hero-stats" id="heroStats"></div>
-    <div class="hero-cta"><a class="btn" href="#mazao" data-i18n="ctaPrices">Angalia bei za wiki</a><a class="btn ghost" href="#historia" data-i18n="ctaHistory">Mwenendo wa bei</a></div>
-  </div>
-  <p class="credit hero-credit">Picha: Soko la Tengeru, Arusha · Fanny Schertzer, <a href="https://commons.wikimedia.org/wiki/File:Tengeru_market.jpg" rel="noopener">CC BY-SA 2.5</a></p>
-</section>
-<nav class="tabs" aria-label="Sections">
-  <div class="wrap">
-    <a href="#mazao" data-view="mazao" data-i18n="tabCrops">Mazao</a>
-    <a href="#historia" data-view="historia" data-i18n="tabHistory">Historia ya bei</a>
-    <a href="#mifugo" data-view="mifugo" data-i18n="tabLive">Mifugo</a>
-    <a href="#vyanzo" data-view="vyanzo" data-i18n="tabSources">Vyanzo na habari</a>
-  </div>
-</nav>
-<main class="wrap">
-  <section class="view" id="view-mazao">
-    <div class="controls">
-      <label><span data-i18n="week">Wiki</span> <select id="weekSel"></select></label>
-      <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitCrop">Bei ya jumla, TZS kwa kilo</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Kilimo</b></span></span>
-    </div>
-    <div>
-      <h2 data-i18n="natTitle">Wastani wa bei za mikoa</h2>
-      <p class="missing" data-i18n="natHint">Wastani wa mikoa yote yenye bei wiki hii. Chagua zao kuona bei kila mkoa.</p>
-    </div>
-    <div class="tiles" id="tiles"></div>
-    <div class="alert" id="review" role="note"></div>
-    <div class="card" id="mapSection">
-      <div class="card-head"><h3 id="mapTitle"></h3><p data-i18n="mapSub">Gusa au elekeza kipanya kwenye mkoa kuona bei zake zote</p></div>
-      <div class="map-grid">
-        <div class="map-wrap" id="mapWrap"><div id="mapSvg"></div><div class="map-tip" id="mapTip" hidden></div></div>
-        <aside class="map-panel" id="mapPanel" aria-live="polite"></aside>
-      </div>
-      <div class="map-legend" id="mapLegend"></div>
-      <p class="credit" id="mapCredit"></p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3 id="chartTitle"></h3><p id="chartSub"></p></div>
-      <div class="chart" id="cropChart"></div>
-      <div class="legend">
-        <span><i style="background:var(--accent)"></i><span data-i18n="lgThis">Wiki hii</span></span>
-        <span><i style="background:var(--ink);width:3px;height:12px"></i><span data-i18n="lgPrev">Wiki iliyopita</span></span>
-        <span><i style="background:var(--gold);width:2px;height:12px"></i><span data-i18n="lgNat">Wastani wa mikoa</span></span>
-        <span><i style="background:var(--gold-soft);border:2px solid var(--gold)"></i><span data-i18n="lgFlag">Inahitaji ukaguzi</span></span>
-      </div>
-      <p class="missing" id="missing"></p>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3 data-i18n="tableTitle">Bei zote kwa mkoa</h3><p data-i18n="tableSub">TZS kwa kilo · asilimia ni badiliko la wiki</p></div>
-      <div class="tablewrap"><table id="cropTable"></table></div>
-      <p class="missing" id="cropSource"></p>
-    </div>
-  </section>
+<body data-page="home">
+<div id="site-header"></div>
 
-  <section class="view" id="view-historia">
-    <h2 data-i18n="histTitle">Mwenendo wa bei kwa muda</h2>
-    <div class="controls">
-      <label><span data-i18n="crop">Zao</span> <select id="histCrop"></select></label>
-      <label><span data-i18n="region">Mkoa</span> <select id="histRegion"></select></label>
+<section class="home-hero"><div class="wrap">
+  <div>
+    <p class="eyebrow"><span class="sw">Bei za soko · mikoa yote · kila wiki</span><span class="en">Market prices · every region · every week</span></p>
+    <h1><span class="sw">Jua bei ya soko kabla hujauza au kununua</span><span class="en">Know the market price before you sell or buy</span></h1>
+    <p class="lead"><span class="sw">SokoData inakusanya bei rasmi za mazao na mifugo kutoka taarifa za wizara, inazipanga kwa mkoa na wiki, na kuziweka wazi kwa wakulima, wafanyabiashara, watafiti na watunga sera.</span><span class="en">SokoData gathers official crop and livestock prices from ministry reports, organises them by region and week, and makes them open to farmers, traders, researchers and policy makers.</span></p>
+    <div class="cta">
+      <a class="btn" href="prices.html"><span class="sw">Angalia bei za wiki</span><span class="en">See this week's prices</span></a>
+      <a class="btn ghost" href="data.html"><span class="sw">Pakua data</span><span class="en">Download data</span></a>
     </div>
-    <div class="card">
-      <div class="card-head"><h3 id="histChartTitle"></h3><p id="histSub"></p></div>
-      <div class="chart" id="histChart"></div>
-    </div>
-  </section>
+    <div class="stats" id="stats"></div>
+  </div>
+  <figure>
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kariakoo_market_dar_es_salaam_2.jpg?width=1200" alt="Soko la Kariakoo, Dar es Salaam">
+    <figcaption class="credit"><span class="sw">Soko la Kariakoo, Dar es Salaam</span><span class="en">Kariakoo market, Dar es Salaam</span> · Moongateclimber, <a href="https://commons.wikimedia.org/wiki/File:Kariakoo_market_dar_es_salaam_2.jpg" rel="noopener">public domain</a></figcaption>
+  </figure>
+</div></section>
 
-  <section class="view" id="view-mifugo">
-    <div class="controls">
-      <label><span data-i18n="week">Wiki</span> <select id="liveWeekSel"></select></label>
-      <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitLive">TZS kwa mnyama mmoja (bei ya chini na ya juu)</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Mifugo na Uvuvi</b></span></span>
-    </div>
-    <figure class="banner"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Maasai_man_with_cattle.jpg?width=1600" alt="" loading="lazy"><figcaption class="credit">Picha: Muhammad Mahdi Karim, <a href="https://commons.wikimedia.org/wiki/File:Maasai_man_with_cattle.jpg" rel="noopener">GFDL 1.2</a></figcaption></figure>
-    <h2 data-i18n="liveTitle">Bei za mifugo kwenye minada ya upili na mipakani</h2>
-    <div class="chips" id="animalChips" role="group" aria-label="Animal"></div>
-    <div class="card">
-      <div class="card-head"><h3 id="liveChartTitle"></h3><p data-i18n="liveSub">Kila mstari ni bei ya chini hadi ya juu; uzito uko kulia</p></div>
-      <div class="chart" id="liveChart"></div>
-    </div>
-    <div class="alert" role="note"><strong data-i18n="liveNoteH">Kumbuka</strong><span data-i18n="liveNote"></span></div>
-  </section>
+<section class="band soft"><div class="wrap">
+  <div class="band-head">
+    <div><h2><span class="sw">Bei za wiki ya karibuni</span><span class="en">Latest weekly prices</span></h2>
+    <p id="latestSub"></p></div>
+    <a class="btn ghost small" href="prices.html"><span class="sw">Ramani na mikoa yote</span><span class="en">Map and all regions</span></a>
+  </div>
+  <div class="price-strip" id="strip"></div>
+</div></section>
 
-  <section class="view" id="view-vyanzo">
-    <div class="about-grid">
-    <figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg?width=1000" alt="" loading="lazy"><figcaption class="credit">Kikundi cha wakulima Wanawake Kwanza, Maza, Morogoro · USAID, <a href="https://commons.wikimedia.org/wiki/File:Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg" rel="noopener">public domain</a></figcaption></figure>
-    <div class="card prose">
-      <h2 data-i18n="aboutTitle">Kuhusu data hii</h2>
-      <div data-i18n-html="aboutBody"></div>
-      <div id="coverage"></div>
-    </div>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3 data-i18n="newsTitle">Bei zilizoripotiwa kwenye magazeti</h3><p data-i18n="newsSub">Chanzo cha pili: kila takwimu ina kiungo chake</p></div>
-      <div class="tablewrap" id="newsBox"></div>
-    </div>
-  </section>
-</main>
-<footer><div class="wrap" data-i18n="foot"></div></footer>
-<script src="assets/app.js"></script>
+<section class="band"><div class="wrap">
+  <div class="band-head"><div><h2><span class="sw">Unachopata SokoData</span><span class="en">What SokoData offers</span></h2></div></div>
+  <div class="cards3">
+    <article class="feature">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dry_maize_for_harvesting-Tanzania.jpg?width=800" alt="" loading="lazy">
+      <div><h3><span class="sw">Bei na ramani</span><span class="en">Prices and map</span></h3>
+      <p><span class="sw">Bei za jumla za mazao 7 kwa mikoa zaidi ya 20, ramani shirikishi, mwenendo wa bei kwa muda na bei za minada ya mifugo.</span><span class="en">Wholesale prices of 7 crops in more than 20 regions, an interactive map, price trends over time and livestock auction prices.</span></p>
+      <a class="more" href="prices.html"><span class="sw">Fungua bei →</span><span class="en">Open prices →</span></a></div>
+    </article>
+    <article class="feature">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Local_market_in_tanzania_bunju.jpg?width=800" alt="" loading="lazy">
+      <div><h3><span class="sw">Data ya kupakua</span><span class="en">Data to download</span></h3>
+      <p><span class="sw">Chagua zao, mkoa na kipindi, kisha pakua faili la CSV lenye chanzo cha kila bei. Unahitaji zaidi? Tuma ombi la data.</span><span class="en">Choose a crop, region and period, then download a CSV file with the source of every price. Need more? Send a data request.</span></p>
+      <a class="more" href="data.html"><span class="sw">Nenda kwenye data →</span><span class="en">Go to data →</span></a></div>
+    </article>
+    <article class="feature">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg?width=800" alt="" loading="lazy">
+      <div><h3><span class="sw">Mradi wa wazi</span><span class="en">An open project</span></h3>
+      <p><span class="sw">Imeanzishwa na mhadhiri wa SUA. Msimbo na data viko wazi kwenye GitHub ili wengine wajenge juu yake.</span><span class="en">Started by a lecturer at SUA. The code and data are open on GitHub so others can build on them.</span></p>
+      <a class="more" href="project.html"><span class="sw">Soma kuhusu mradi →</span><span class="en">Read about the project →</span></a></div>
+    </article>
+  </div>
+  <p class="credit"><span class="sw">Picha</span><span class="en">Photos</span>: Evancez, <a href="https://commons.wikimedia.org/wiki/File:Dry_maize_for_harvesting-Tanzania.jpg" rel="noopener">CC BY-SA 4.0</a> · Rasheed Hamis, <a href="https://commons.wikimedia.org/wiki/File:Local_market_in_tanzania_bunju.jpg" rel="noopener">CC BY-SA 4.0</a> · USAID, <a href="https://commons.wikimedia.org/wiki/File:Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg" rel="noopener">public domain</a></p>
+</div></section>
+
+<section class="band soft"><div class="wrap">
+  <div class="mv">
+    <div><h3><span class="sw">Dhamira</span><span class="en">Mission</span></h3>
+    <p><span class="sw">Kufanya bei za soko za Tanzania ziwe rahisi kupata, kulinganisha na kuamini, kwa kila mtu.</span><span class="en">To make Tanzanian market prices easy for anyone to find, compare and trust.</span></p></div>
+    <div><h3><span class="sw">Dira</span><span class="en">Vision</span></h3>
+    <p><span class="sw">Tanzania ambapo kila mkulima na mfanyabiashara anafanya maamuzi kwa kutumia taarifa sahihi za bei.</span><span class="en">A Tanzania where every farmer and trader makes decisions with accurate price information.</span></p></div>
+  </div>
+  <p style="margin:20px 0 0"><a href="about.html"><span class="sw">Zaidi kuhusu sisi →</span><span class="en">More about us →</span></a></p>
+</div></section>
+
+<div id="site-footer"></div>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
 <script>
-/* Hero text and live numbers. Kept here so app.js stays unchanged. */
-Object.assign(T.sw, { heroKicker: "Bei za jumla za mazao, kila wiki, mikoa yote", heroTitle: "Jua bei ya soko kabla hujauza au kununua", heroSub: "Bei rasmi za Wizara ya Kilimo kwa mikoa zaidi ya 20, zimepangwa ili uzilinganishe kwa urahisi.", ctaPrices: "Angalia bei za wiki", ctaHistory: "Mwenendo wa bei", sWeeks: "wiki za bei", sRegions: "mikoa", sRows: "bei zilizohifadhiwa", sLatest: "taarifa ya karibuni", sCheap: "Mahindi rahisi zaidi", sDear: "Mahindi ghali zaidi" });
-Object.assign(T.en, { heroKicker: "Wholesale crop prices, every week, every region", heroTitle: "Know the market price before you sell or buy", heroSub: "Official Ministry of Agriculture prices for more than 20 regions, organised so you can compare them easily.", ctaPrices: "See this week's prices", ctaHistory: "Price trends", sWeeks: "weeks of prices", sRegions: "regions", sRows: "prices on record", sLatest: "latest report", sCheap: "Cheapest maize", sDear: "Most expensive maize" });
-function heroStats() {
-  const t = T[S.lang], m = D.meta || {}, weeks = m.crop_weeks || [];
-  if (!weeks.length) return;
-  const last = weeks[weeks.length - 1], rows = D.crops.filter(r => r.week_start === last && r.crop === "mahindi" && r.price != null).sort((a, b) => a.price - b.price);
-  const regions = new Set(D.crops.map(r => r.region)).size, end = (D.crops.find(r => r.week_start === last) || {}).week_end || last;
-  const box = (n, l) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`;
-  let s = box(weeks.length, t.sWeeks) + box(regions, t.sRegions) + box(fmt(D.crops.length), t.sRows) + box(weekLabel(last, end), t.sLatest);
-  if (rows.length) s += box(`${esc(rows[0].region)} · ${fmt(rows[0].price)}`, t.sCheap + " (TZS/kg)") + box(`${esc(rows[rows.length - 1].region)} · ${fmt(rows[rows.length - 1].price)}`, t.sDear + " (TZS/kg)");
-  $("heroStats").innerHTML = s;
-}
-const _renderAll = renderAll;
-renderAll = function () { _renderAll(); heroStats(); };
-applyText();
+/* Home page numbers, read from the same data files as the prices page. */
+(function () {
+  const CROPS = [["mahindi", "Mahindi", "Maize"], ["mchele", "Mchele", "Rice"], ["maharage", "Maharage", "Beans"], ["mtama", "Mtama", "Sorghum"], ["uwele", "Uwele", "Bulrush millet"], ["ulezi", "Ulezi", "Finger millet"], ["viazi mviringo", "Viazi mviringo", "Potatoes"]];
+  const MON = { sw: ["Jan", "Feb", "Mac", "Apr", "Mei", "Jun", "Jul", "Ago", "Sep", "Okt", "Nov", "Des"], en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"] };
+  const L = (sw, en) => `<span class="sw">${sw}</span><span class="en">${en}</span>`;
+  const fmt = n => Math.round(n).toLocaleString("en-US");
+  const day = (d, l) => `${Number(d.slice(8))} ${MON[l][Number(d.slice(5, 7)) - 1]} ${d.slice(0, 4)}`;
+  const chg = (a, b) => { if (!b) return ""; const p = (a - b) / b * 100, c = p > 0.05 ? "up" : p < -0.05 ? "down" : "flat"; return `<span class="chg ${c}">${p > 0.05 ? "▲" : p < -0.05 ? "▼" : "►"} ${Math.abs(p).toFixed(1)}%</span>`; };
+  Promise.all(["crops", "meta"].map(n => fetch(`data/${n}.json`, { cache: "no-cache" }).then(r => r.json()))).then(([crops, meta]) => {
+    const weeks = meta.crop_weeks || [], last = weeks[weeks.length - 1];
+    const rows = crops.filter(r => r.week_start === last), end = (rows[0] || {}).week_end || last;
+    const regions = new Set(crops.map(r => r.region)).size;
+    document.getElementById("stats").innerHTML =
+      `<div><b>${weeks.length}</b><span>${L("wiki za bei", "weeks of prices")}</span></div>` +
+      `<div><b>${regions}</b><span>${L("mikoa", "regions")}</span></div>` +
+      `<div><b>${fmt(crops.length)}</b><span>${L("bei zilizohifadhiwa", "prices on record")}</span></div>` +
+      `<div><b>7</b><span>${L("mazao makuu", "main crops")}</span></div>`;
+    document.getElementById("latestSub").innerHTML = L(`Wastani wa mikoa, TZS kwa kilo, bei ya jumla · ${day(last, "sw")} – ${day(end, "sw")} · Wizara ya Kilimo`, `Regional average, TZS per kg, wholesale · ${day(last, "en")} – ${day(end, "en")} · Ministry of Agriculture`);
+    const mean = a => a.length ? Math.round(a.reduce((s, x) => s + x, 0) / a.length / 10) * 10 : null; /* same rounding as the prices page */
+    document.getElementById("strip").innerHTML = CROPS.map(([k, sw, en]) => {
+      const rs = rows.filter(r => r.crop === k), cur = mean(rs.filter(r => r.price != null).map(r => r.price)), prev = mean(rs.filter(r => r.previous != null).map(r => r.previous));
+      return `<a href="prices.html#mazao"><span class="n">${L(sw, en)}</span><span class="p">${cur == null ? "–" : fmt(cur)} <small>TZS/kg</small></span>${cur == null ? "" : chg(cur, prev)}</a>`;
+    }).join("");
+  }).catch(() => { document.getElementById("strip").innerHTML = `<p class="empty">–</p>`; });
+})();
 </script>
-<script src="assets/map.js"></script>
 </body>
 </html>

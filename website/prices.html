@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bei za mazao na mifugo · SokoData Tanzania</title>
+<meta name="title-sw" content="Bei za mazao na mifugo · SokoData Tanzania">
+<meta name="title-en" content="Crop and livestock prices · SokoData Tanzania">
+<meta name="description" content="Bei za mazao na mifugo Tanzania: wazi, za kuaminika, kila wiki. Tanzanian crop and livestock prices, open and sourced.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="prices">
+<div id="site-header"></div>
+<section class="page-intro"><div class="wrap">
+  <p class="eyebrow"><span class="sw">Bei za soko</span><span class="en">Market prices</span></p>
+  <h1><span class="sw">Bei za mazao na mifugo kwa mikoa</span><span class="en">Crop and livestock prices by region</span></h1>
+  <p><span class="sw">Bei za jumla kutoka taarifa za kila wiki za Wizara ya Kilimo, na bei za minada kutoka Wizara ya Mifugo na Uvuvi. Elekeza kwenye ramani kuona bei za kila mkoa.</span><span class="en">Wholesale prices from the Ministry of Agriculture's weekly reports, and auction prices from the Ministry of Livestock and Fisheries. Point at the map to see each region's prices.</span></p>
+</div></section>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <a href="#mazao" data-view="mazao" data-i18n="tabCrops">Mazao</a>
+    <a href="#historia" data-view="historia" data-i18n="tabHistory">Historia ya bei</a>
+    <a href="#mifugo" data-view="mifugo" data-i18n="tabLive">Mifugo</a>
+    <a href="#vyanzo" data-view="vyanzo" data-i18n="tabSources">Vyanzo na habari</a>
+  </div>
+</nav>
+<main class="wrap dash">
+  <section class="view" id="view-mazao">
+    <div class="controls">
+      <label><span data-i18n="week">Wiki</span> <select id="weekSel"></select></label>
+      <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitCrop">Bei ya jumla, TZS kwa kilo</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Kilimo</b></span></span>
+    </div>
+    <div>
+      <h2 data-i18n="natTitle">Wastani wa bei za mikoa</h2>
+      <p class="missing" data-i18n="natHint">Wastani wa mikoa yote yenye bei wiki hii. Chagua zao kuona bei kila mkoa.</p>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <div class="alert" id="review" role="note"></div>
+    <div class="card" id="mapSection">
+      <div class="card-head"><h3 id="mapTitle"></h3><p data-i18n="mapSub">Gusa au elekeza kipanya kwenye mkoa kuona bei zake zote</p></div>
+      <div class="map-grid">
+        <div class="map-wrap" id="mapWrap"><div id="mapSvg"></div><div class="map-tip" id="mapTip" hidden></div></div>
+        <aside class="map-panel" id="mapPanel" aria-live="polite"></aside>
+      </div>
+      <div class="map-legend" id="mapLegend"></div>
+      <p class="credit" id="mapCredit"></p>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 id="chartTitle"></h3><p id="chartSub"></p></div>
+      <div class="chart" id="cropChart"></div>
+      <div class="legend">
+        <span><i style="background:var(--accent)"></i><span data-i18n="lgThis">Wiki hii</span></span>
+        <span><i style="background:var(--ink);width:3px;height:12px"></i><span data-i18n="lgPrev">Wiki iliyopita</span></span>
+        <span><i style="background:var(--gold);width:2px;height:12px"></i><span data-i18n="lgNat">Wastani wa mikoa</span></span>
+        <span><i style="background:var(--gold-soft);border:2px solid var(--gold)"></i><span data-i18n="lgFlag">Inahitaji ukaguzi</span></span>
+      </div>
+      <p class="missing" id="missing"></p>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 data-i18n="tableTitle">Bei zote kwa mkoa</h3><p data-i18n="tableSub">TZS kwa kilo · asilimia ni badiliko la wiki</p></div>
+      <div class="tablewrap"><table id="cropTable"></table></div>
+      <p class="missing" id="cropSource"></p>
+    </div>
+  </section>
+
+  <section class="view" id="view-historia">
+    <h2 data-i18n="histTitle">Mwenendo wa bei kwa muda</h2>
+    <div class="controls">
+      <label><span data-i18n="crop">Zao</span> <select id="histCrop"></select></label>
+      <label><span data-i18n="region">Mkoa</span> <select id="histRegion"></select></label>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 id="histChartTitle"></h3><p id="histSub"></p></div>
+      <div class="chart" id="histChart"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-mifugo">
+    <div class="controls">
+      <label><span data-i18n="week">Wiki</span> <select id="liveWeekSel"></select></label>
+      <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitLive">TZS kwa mnyama mmoja (bei ya chini na ya juu)</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Mifugo na Uvuvi</b></span></span>
+    </div>
+    <figure class="banner"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Maasai_man_with_cattle.jpg?width=1600" alt="" loading="lazy"><figcaption class="credit">Picha: Muhammad Mahdi Karim, <a href="https://commons.wikimedia.org/wiki/File:Maasai_man_with_cattle.jpg" rel="noopener">GFDL 1.2</a></figcaption></figure>
+    <h2 data-i18n="liveTitle">Bei za mifugo kwenye minada ya upili na mipakani</h2>
+    <div class="chips" id="animalChips" role="group" aria-label="Animal"></div>
+    <div class="card">
+      <div class="card-head"><h3 id="liveChartTitle"></h3><p data-i18n="liveSub">Kila mstari ni bei ya chini hadi ya juu; uzito uko kulia</p></div>
+      <div class="chart" id="liveChart"></div>
+    </div>
+    <div class="alert" role="note"><strong data-i18n="liveNoteH">Kumbuka</strong><span data-i18n="liveNote"></span></div>
+  </section>
+
+  <section class="view" id="view-vyanzo">
+    <div class="about-grid">
+    <figure class="photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg?width=1000" alt="" loading="lazy"><figcaption class="credit">Kikundi cha wakulima Wanawake Kwanza, Maza, Morogoro · USAID, <a href="https://commons.wikimedia.org/wiki/File:Flickr_-_usaid.africa_-_Maza_Wanawake_Kwanza_Growers_Association.jpg" rel="noopener">public domain</a></figcaption></figure>
+    <div class="card prose">
+      <h2 data-i18n="aboutTitle">Kuhusu data hii</h2>
+      <div data-i18n-html="aboutBody"></div>
+      <div id="coverage"></div>
+    </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 data-i18n="newsTitle">Bei zilizoripotiwa kwenye magazeti</h3><p data-i18n="newsSub">Chanzo cha pili: kila takwimu ina kiungo chake</p></div>
+      <div class="tablewrap" id="newsBox"></div>
+    </div>
+  </section>
+</main>
+<div id="site-footer"></div>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
+<script src="assets/app.js"></script>
+<script src="assets/map.js"></script>
+</body>
+</html>
