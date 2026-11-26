@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SokoData Tanzania</title>
+<meta name="description" content="Bei za mazao na mifugo Tanzania: wazi, za kuaminika, kila wiki. Tanzanian crop and livestock prices, open and sourced.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Soko<span>Data</span> Tanzania</h1>
+      <p data-i18n="tagline">Bei za mazao na mifugo, zilizo wazi na za kuaminika</p>
+      <span class="proto" data-i18n="proto">Toleo la majaribio</span>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button id="lang-sw" type="button" aria-pressed="true">Kiswahili</button>
+      <button id="lang-en" type="button" aria-pressed="false">English</button>
+    </div>
+  </div>
+</header>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <a href="#mazao" data-view="mazao" data-i18n="tabCrops">Mazao</a>
+    <a href="#historia" data-view="historia" data-i18n="tabHistory">Historia ya bei</a>
+    <a href="#mifugo" data-view="mifugo" data-i18n="tabLive">Mifugo</a>
+    <a href="#vyanzo" data-view="vyanzo" data-i18n="tabSources">Vyanzo na habari</a>
+  </div>
+</nav>
+<main class="wrap">
+  <section class="view" id="view-mazao">
+    <div class="controls">
+      <label><span data-i18n="week">Wiki</span> <select id="weekSel"></select></label>
+      <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitCrop">Bei ya jumla, TZS kwa kilo</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Kilimo</b></span></span>
+    </div>
+    <div>
+      <h2 data-i18n="natTitle">Wastani wa bei za mikoa</h2>
+      <p class="missing" data-i18n="natHint">Wastani wa mikoa yote yenye bei wiki hii. Chagua zao kuona bei kila mkoa.</p>
+    </div>
+    <div class="tiles" id="tiles"></div>
+    <div class="alert" id="review" role="note"></div>
+    <div class="card">
+      <div class="card-head"><h3 id="chartTitle"></h3><p id="chartSub"></p></div>
+      <div class="chart" id="cropChart"></div>
+      <div class="legend">
+        <span><i style="background:var(--accent)"></i><span data-i18n="lgThis">Wiki hii</span></span>
+        <span><i style="background:var(--ink);width:3px;height:12px"></i><span data-i18n="lgPrev">Wiki iliyopita</span></span>
+        <span><i style="background:var(--gold);width:2px;height:12px"></i><span data-i18n="lgNat">Wastani wa mikoa</span></span>
+        <span><i style="background:var(--gold-soft);border:2px solid var(--gold)"></i><span data-i18n="lgFlag">Inahitaji ukaguzi</span></span>
+      </div>
+      <p class="missing" id="missing"></p>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 data-i18n="tableTitle">Bei zote kwa mkoa</h3><p data-i18n="tableSub">TZS kwa kilo · asilimia ni badiliko la wiki</p></div>
+      <div class="tablewrap"><table id="cropTable"></table></div>
+      <p class="missing" id="cropSource"></p>
+    </div>
+  </section>
+
+  <section class="view" id="view-historia">
+    <h2 data-i18n="histTitle">Mwenendo wa bei kwa muda</h2>
+    <div class="controls">
+      <label><span data-i18n="crop">Zao</span> <select id="histCrop"></select></label>
+      <label><span data-i18n="region">Mkoa</span> <select id="histRegion"></select></label>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 id="histChartTitle"></h3><p id="histSub"></p></div>
+      <div class="chart" id="histChart"></div>
+    </div>
+  </section>
+
+  <section class="view" id="view-mifugo">
+    <div class="controls">
+      <label><span data-i18n="week">Wiki</span> <select id="liveWeekSel"></select></label>
+      <span class="meta"><span><span data-i18n="unit">Kipimo</span>: <b data-i18n="unitLive">TZS kwa mnyama mmoja (bei ya chini na ya juu)</b></span><span><span data-i18n="source">Chanzo</span>: <b>Wizara ya Mifugo na Uvuvi</b></span></span>
+    </div>
+    <h2 data-i18n="liveTitle">Bei za mifugo kwenye minada ya upili na mipakani</h2>
+    <div class="chips" id="animalChips" role="group" aria-label="Animal"></div>
+    <div class="card">
+      <div class="card-head"><h3 id="liveChartTitle"></h3><p data-i18n="liveSub">Kila mstari ni bei ya chini hadi ya juu; uzito uko kulia</p></div>
+      <div class="chart" id="liveChart"></div>
+    </div>
+    <div class="alert" role="note"><strong data-i18n="liveNoteH">Kumbuka</strong><span data-i18n="liveNote"></span></div>
+  </section>
+
+  <section class="view" id="view-vyanzo">
+    <div class="card prose">
+      <h2 data-i18n="aboutTitle">Kuhusu data hii</h2>
+      <div data-i18n-html="aboutBody"></div>
+      <div id="coverage"></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3 data-i18n="newsTitle">Bei zilizoripotiwa kwenye magazeti</h3><p data-i18n="newsSub">Chanzo cha pili: kila takwimu ina kiungo chake</p></div>
+      <div class="tablewrap" id="newsBox"></div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap" data-i18n="foot"></div></footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
